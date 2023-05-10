@@ -4,11 +4,19 @@ import Header from "./components/Header"
 import Forms from './components/Forms';
 import Org from './components/org';
 import Team from './components/Team';
+import Footer from './components/Footer';
 function App() {
   const [showForm, renderForm] = useState(false);
+  const [colaborators, newColaborator] = useState([]);
   const changeShow = () =>
   {
     renderForm(!showForm)
+  }
+
+  const registerColaborators = (colaborator) =>
+  {
+     console.log('New members', colaborators);
+     newColaborator([...colaborators, colaborator])
   }
 
   const listTeams = [
@@ -54,11 +62,19 @@ function App() {
   return (
     <div>
       <Header/>
-      {showForm && <Forms team = {listTeams.map((team) => team.job)}/>}
+        {
+          showForm && <Forms team = {listTeams.map((team) => team.job)}
+          registerColaborator = {registerColaborators}  
+          />
+        }
+
       <Org changeShow = {changeShow}/>
       {
-        listTeams.map((team) => <Team team = {team} key = {team.job}/> )
+        listTeams.map((team) => <Team team = {team}
+         key = {team.job}
+         colaborators = {colaborators.filter( colaborator => colaborator.team === team.job)}/> )
       }
+      <Footer />
     </div>
   );
 }

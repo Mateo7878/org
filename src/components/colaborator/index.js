@@ -1,14 +1,17 @@
 import './colaborator.css'
 
-const Colaborator = () =>
+const Colaborator = (props) =>
 {
+    const {name, job, photo, team} = props.data
+    const { color } = props
+
     return <div className='colaborators'>
-        <div className='head'>
-            <img src='https://github.com/Mateo7878.png' alt='nombre'/>
+        <div className='head' style={{backgroundColor: color}}>
+            <img src={photo} alt={name}/>
         </div>
         <div className='info'>
-            <h4>Jose</h4>
-            <h5>Instructor</h5>
+            <h4>{name}</h4>
+            <h5>{job}</h5>
         </div>
         
     </div>

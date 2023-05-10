@@ -4,12 +4,15 @@ import "../Text-Field"
 import TextField from "../Text-Field"
 import Optionlist from "../Option-list"
 import Button from "../Button"
+
 const Forms = (props) =>
 {
     const [name, setName] = useState("")
     const [job, setJob] = useState("")
     const [photo, setPhoto] = useState("")
     const [team, setTeam] = useState("")
+
+    const {registerColaborator} = props
 
     const sendInfo = (ev) =>
     {
@@ -22,6 +25,8 @@ const Forms = (props) =>
             photo, 
             team
         }
+
+        registerColaborator(sendData)
     }
 
     return <section className="forms">

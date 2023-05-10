@@ -5,6 +5,7 @@ const Team = (props) =>
 {
     // Desestructuring
     const {color, secColor, job} = props.team
+    const { colaborators } = props
 
     const colors = 
     {
@@ -13,15 +14,19 @@ const Team = (props) =>
 
     const titleStyle = { borderColor: color }
 
-    return <section className = "team" style={colors}>
-        <h3 style={titleStyle}>{job}</h3>
-        <div className="colaborators">
-           <Colaborator/>
-           <Colaborator/>
-           <Colaborator/>
-           <Colaborator/>
-        </div>
-    </section>
+    return <>
+    { colaborators.length > 0 &&
+                <section className = "team" style={colors}>
+                <h3 style={titleStyle}>{job}</h3>
+                <div className="colaborators">
+                    {
+                        colaborators.map((colaborator, index) =>  <Colaborator data={colaborator}
+                        key = {index} color= {color}/> ) 
+                    }   
+                </div>
+            </section>
+    }
+    </>
 }
 
 export default Team;
