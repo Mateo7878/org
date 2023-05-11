@@ -3,7 +3,7 @@ import {TiDelete} from 'react-icons/ti'
 import {AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
 const Colaborator = (props) =>
 {
-    const {name, job, photo, team, id, fav} = props.data
+    const {name, job, photo, id, fav} = props.data
     const { color, deleteColaborator, like } = props
 
     return <div className='colaborators'>
