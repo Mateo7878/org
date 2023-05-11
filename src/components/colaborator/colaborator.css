@@ -2,7 +2,7 @@
 {
     width: 280px;
     margin-bottom: 24px;
-    
+    position: relative;
 }
 
 .colaborators .head
@@ -49,3 +49,9 @@
     margin: 0;
 }
 
+.eliminate 
+{
+    position: absolute;
+    right: -15px;
+    top: -15px;
+}

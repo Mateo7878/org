@@ -1,7 +1,6 @@
 import { useState } from "react"
 import "./forms.css"
-import "../Text-Field"
-import TextField from "../Text-Field"
+import Field from "../Field"
 import Optionlist from "../Option-list"
 import Button from "../Button"
 
@@ -12,7 +11,9 @@ const Forms = (props) =>
     const [photo, setPhoto] = useState("")
     const [team, setTeam] = useState("")
 
-    const {registerColaborator} = props
+    const {registerColaborator, createTeam} = props
+    const [title, changeTitle] = useState("")
+    const [color, changeColor] = useState("")
 
     const sendInfo = (ev) =>
     {
@@ -29,15 +30,27 @@ const Forms = (props) =>
         registerColaborator(sendData)
     }
 
+    const managmentNewTeam = (ev) =>
+    {
+        ev.preventDefault()
+        createTeam({title, color: color})
+    }
+
     return <section className="forms">
         <form onSubmit={sendInfo}>
             <h2>Rellena el formulario para añadir al colaborador</h2>
-            <TextField title ="Nombre" placeholder ="Ingresar nombre" required value = {name} setValues = {setName}/>
-            <TextField title = "Puesto" placeholder = "Ingresar puesto" required value = {job} setValues = {setJob}/> 
-            <TextField title = "Foto" placeholder = "Ingresar enlace de foto" required value = {photo} setValues = {setPhoto}/>
+            <Field title ="Nombre" placeholder ="Ingresar nombre" required value = {name} setValues = {setName}/>
+            <Field title = "Puesto" placeholder = "Ingresar puesto" required value = {job} setValues = {setJob}/> 
+            <Field title = "Foto" placeholder = "Ingresar enlace de foto" required value = {photo} setValues = {setPhoto}/>
             <Optionlist value = {team} setValues = {setTeam} teams = {props.team}/>       
             <Button text = "Crear"/>    
         </form>
+        <form onSubmit={managmentNewTeam}>
+            <h2>Rellena el formulario para crear el equipo</h2>
+            <Field title ="Título" placeholder ="Ingresar título" required value = {title} setValues = {changeTitle}/>
+            <Field title = "Color" placeholder = "Ingresar el color en Hex" value = {color} setValues = {changeColor} type = 'color'/>
+            <Button text = "Registrar equipo"/>   
+        </form> 
     </section>
 }
 
